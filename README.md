@@ -29,7 +29,10 @@ al usuario añadir mensajes a sus cambios para diferenciarlos de otros de manera
 los cambios anteriores residen en el equipo. El repository es lo que le da la habilidad al
 usuario de cambiar entre versiones y guardar nuevas versiones de sus archivos.  
 3. ¿Cómo representa Git los cambios internamente? (objetos blob, tree, commit y tag).  
-**R//** Git almacena los cambios  
+**R//** Git almacena los cambios (y todos los datos en general) como objetos
+dentro de `.git/objects`. Git genera una clave única (también llamado identificador o hash)
+usando tradicionalmente el algoritmo SHA-1 aunque también existe SHA-256 para los repositorios
+configurados con ese algoritmo.  
 **Blob:** Siglas de Binary Large Object, representa el contenido de un archivo
 excluyendo el nombre y ruta de este.  
 **Tree:** Representa los directorios. Contiene los hashes de los blob o subtrees
