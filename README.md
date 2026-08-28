@@ -14,30 +14,30 @@ documentación técnica, foros y demás.
 
 ### GIT
 
-1. ¿Qué es un repositorio en Git y cómo se diferencia de un proyecto “normal”?
+1. ¿Qué es un repositorio en Git y cómo se diferencia de un proyecto “normal”?  
 **R//** Un repositorio en Git o también llamado "repo" es un espacio de almacenamiento
 donde se guarda el historial de cambios de un proyecto y sus archivos.
 Se diferencia de un proyecto "normal" en que Git permite conocer cuándo y dónde
 se hicieron cambios, revertirlos, etc. Nada de eso sería posible sin el historial de Git.
 2. ¿Cuáles son las tres áreas principales de Git (working directory, staging area/index y
-repository) y qué papel cumple cada una?
+repository) y qué papel cumple cada una?  
 **R//** **Working directory:** Es donde están todos los archivos del proyecto. El usuario
-escribe los cambios ahí.
+escribe los cambios ahí.  
 **Staging area:** Es donde Git reune los cambios en los archivos deseados. También le permite
-al usuario añadir mensajes a sus cambios para diferenciarlos de otros de manera comprensible.
+al usuario añadir mensajes a sus cambios para diferenciarlos de otros de manera comprensible.  
 **Repository:** Es donde Git guarda los cambios en sí, es donde el historial y todos
 los cambios anteriores residen en el equipo. El repository es lo que le da la habilidad al
-usuario de cambiar entre versiones y guardar nuevas versiones de sus archivos.
-3. ¿Cómo representa Git los cambios internamente? (objetos blob, tree, commit y tag).
-**R//** Git almacena los cambio 
+usuario de cambiar entre versiones y guardar nuevas versiones de sus archivos.  
+3. ¿Cómo representa Git los cambios internamente? (objetos blob, tree, commit y tag).  
+**R//** Git almacena los cambios  
 **Blob:** Siglas de Binary Large Object, representa el contenido de un archivo
-excluyendo el nombre y ruta de este.
+excluyendo el nombre y ruta de este.  
 **Tree:** Representa los directorios. Contiene los hashes de los blob o subtrees
-junto con sus nombres de archivo, tipos y permisos de dichos archivos.
+junto con sus nombres de archivo, tipos y permisos de dichos archivos.  
 **Commit:** Representa el tree raíz junto con quién hizo el commit (padre), cuando (fecha) y
-el por qué (mensaje).
+el por qué (mensaje).  
 **Tag:** Representa una etiqueta de un objeto (commit). Guarda el objeto etiquetado, nombre,
-autor y mensaje.
+autor y mensaje.  
 4. ¿Cómo se crea un commit y qué información almacena un objeto commit?
 5. ¿Cuál es la diferencia entre git pull y git fetch?
 6. ¿Qué es un branch (rama) en Git y cómo Git gestiona los punteros a commits?
