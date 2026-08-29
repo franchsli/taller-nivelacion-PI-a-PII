@@ -56,11 +56,19 @@ Un commit contiene la siguiente información:
 A parte de estas cosas, los commits tambien guardan metadatos útiles para otras cosas (por ejemplo,
 si se firma el commit con GPG este guarda los datos para ello) pero lo descrito anteriormente es lo
 esencial.
-5. ¿Cuál es la diferencia entre git pull y git fetch?
+5. ¿Cuál es la diferencia entre git pull y git fetch?  
+**R//** La diferencia radica en que git fetch carga la información más reciente del repositorio
+remoto sin actualizar los archivos locales, esto es útil para confirmar si hubo
+cambios en el repositorio posteriores a la ultima actualización local. Por otro lado,
+git pull no solo carga la información sino que actualiza los archivos locales con la nueva información.
 6. ¿Qué es un branch (rama) en Git y cómo Git gestiona los punteros a commits?
 7. ¿Cómo se realiza un merge y qué conflictos pueden surgir? ¿Cómo se resuelven?
 8. ¿Cómo funciona el área de staging (git add) y qué pasa si omito este paso?
-9. ¿Qué es el archivo .gitignore y cómo influye en el seguimiento de archivos?
+9. ¿Qué es el archivo .gitignore y cómo influye en el seguimiento de archivos?  
+**R//** El archivo .gitignore es un archivo que le dice a Git que cosas debe ignorar completamente.
+Por ejemplo, si alguien tiene ese archivo y adentro escribe *.txt, Git va a ignorar todos los archivos
+de texto, aunque se hagan cambios en esos archivos y el usuario ejecute `git add .` Git simplemente
+no tendrá en cuenta nada de eso, como si los archivos no existieran.
 10. ¿Cuál es la diferencia entre un “commit amend” (--amend) y un nuevo commit?
 11. ¿Cómo se utiliza git stash y en qué escenarios es útil?
 12. ¿Qué mecanismos ofrece Git para deshacer cambios (por ejemplo, git reset, git
