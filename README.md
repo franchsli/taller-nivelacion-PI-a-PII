@@ -37,7 +37,7 @@ configurados con ese algoritmo.
 excluyendo el nombre y ruta de este.  
 **Tree:** Representa los directorios. Contiene los hashes de los blob o subtrees
 junto con sus nombres de archivo, tipos y permisos de dichos archivos.  
-**Commit:** Representa el tree raíz junto con quién hizo el commit (padre), cuando (fecha) y
+**Commit:** Representa el tree raíz junto con quién hizo el commit (autor), cuando (fecha) y
 el por qué (mensaje).  
 **Tag:** Representa una etiqueta de un objeto (commit). Guarda el objeto etiquetado, nombre,
 autor y mensaje.  
