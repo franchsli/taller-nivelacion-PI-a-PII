@@ -61,18 +61,63 @@ esencial.
 remoto sin actualizar los archivos locales, esto es útil para confirmar si hubo
 cambios en el repositorio posteriores a la ultima actualización local. Por otro lado,
 git pull no solo carga la información sino que actualiza los archivos locales con la nueva información.
-6. ¿Qué es un branch (rama) en Git y cómo Git gestiona los punteros a commits?
-7. ¿Cómo se realiza un merge y qué conflictos pueden surgir? ¿Cómo se resuelven?
-8. ¿Cómo funciona el área de staging (git add) y qué pasa si omito este paso?
+6. ¿Qué es un branch (rama) en Git y cómo Git gestiona los punteros a commits?  
+**R//** Una rama es un puntero a un commit de una línea de trabajo.
+Por ejemplo, si un desarrollador quiere implementar algo a una app sin tocar el main, este
+crea una nueva rama que va a apuntar al mismo commit al que apunta main, sin embargo el podrá
+hacer cambios en esa nueva rama y la main seguirá apuntando a donde apuntaba originalmente
+no sufrirá ningún cambio.  
+Git gestiona esos punteros de esta manera: la rama apunta a un commit y dicho commit apunta
+al commit que le precede y asi sucesivamente hasta llegar al primer commit.
+7. ¿Cómo se realiza un merge y qué conflictos pueden surgir? ¿Cómo se resuelven?  
+**R//** Para realizar un merge se debe ir a la rama la cual va a recibir los cambios con
+`git switch <nombre-rama>` o `git checkout <nombre-rama>`, luego, se ejecuta `git merge <rama-con-cambios>`  
+Durante este proceso, estos conflictos pueden surgir:  
+
+- **Conflicto de contenido:** dos ramas modificaron las mismas líneas.
+
+- **Modificar/eliminar:** una rama modificó un archivo y la otra lo eliminó.
+
+- **Agregar/agregar:** ambas ramas crearon un archivo con el mismo nombre.
+
+- **Renombrar/renombrar:** ambas ramas renombraron el mismo archivo de maneras diferentes.
+
+- **Conflicto binario:** Git no puede combinar automáticamente archivos como imágenes o ciertos archivos compilados.
+
+- **Conflicto de estructura:** una rama trata una ruta como archivo y la otra como directorio.
+
+Para resolver los conflictos se debe abrir los archivos afectados en un editor como VS Code, borrar las marcas de Git
+(<<<<<<<, ======= y >>>>>>>) y hacer los cambios pertinentes para que el conflicto no exista más y luego se debe hacer `git add`
+a todos los archivos cambiados y finalizar el merge con `git merge --continue` o `git commit`.
+
+8. ¿Cómo funciona el área de staging (git add) y qué pasa si omito este paso?  
+**R//** El área de staging es un espacio donde Git guarda todo lo que va a ser parte
+del siguiente commit, si se hacen cambios y este paso se omite, aunque se haga `git commit`,
+Git no va a guardar nada en el repository ya que él busca en la staging area y la ve vacía.
+Adicional a eso, Git también informará que hay cambios en archivos y dirá que se deben registrar
+usando `git add`.
 9. ¿Qué es el archivo .gitignore y cómo influye en el seguimiento de archivos?  
 **R//** El archivo .gitignore es un archivo que le dice a Git que cosas debe ignorar completamente.
 Por ejemplo, si alguien tiene ese archivo y adentro escribe *.txt, Git va a ignorar todos los archivos
 de texto, aunque se hagan cambios en esos archivos y el usuario ejecute `git add .` Git simplemente
 no tendrá en cuenta nada de eso, como si los archivos no existieran.
-10. ¿Cuál es la diferencia entre un “commit amend” (--amend) y un nuevo commit?
-11. ¿Cómo se utiliza git stash y en qué escenarios es útil?
+10. ¿Cuál es la diferencia entre un “commit amend” (--amend) y un nuevo commit?  
+**R//** La diferencia radica en que `git commit --amend` reemplaza el commit al cual apunta la rama
+por uno nuevo. Con ese comando se pueden corregir cosas faltantes en el commit o re escribir el mensaje.
+Por otro lado, un nuevo commit es añadir un nuevo commit a la rama, mientras que `--amend` no cambia los
+contenidos del objeto commit anterior sino que lo reemplaza completamente, un commit normal añade un nuevo objeto
+completamente diferente.
+11. ¿Cómo se utiliza git stash y en qué escenarios es útil?  
+**R//** Se usa generalmente así `git stash push -m "<razón>"`. Es útil en situaciones en las que
+se requiera descartar cambios incompletos y cambiar de rama o se necesitaba hacer un `git pull` antes pero
+el desarrollador lo olvidó y ya tiene cambios, etc.
 12. ¿Qué mecanismos ofrece Git para deshacer cambios (por ejemplo, git reset, git
-revert, git checkout)?
+revert, git checkout)?  
+**R//**  
+- **reset:** Se usa para mover los cambios en la staging area devuelta al working directory
+- **revert:** Deshace un commit ya realizado añadiendo un nuevo commit que invierte los cambios del
+commit dado. Por ejemplo: `git revert HEAD~3` revierte los cambios en el último cuarto commit en HEAD y
+crea un nuevo commit con los cambios revertidos.
 13. ¿Cómo funciona la configuración de remotos (origin, upstream) y qué comandos uso
 para gestión de forks?
 14. ¿Cómo puedo inspeccionar el historial de commits (por ejemplo, git log, git
