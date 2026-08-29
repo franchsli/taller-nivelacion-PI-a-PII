@@ -41,7 +41,21 @@ junto con sus nombres de archivo, tipos y permisos de dichos archivos.
 el por qué (mensaje).  
 **Tag:** Representa una etiqueta de un objeto (commit). Guarda el objeto etiquetado, nombre,
 autor y mensaje.  
-4. ¿Cómo se crea un commit y qué información almacena un objeto commit?
+4. ¿Cómo se crea un commit y qué información almacena un objeto commit?  
+**R//** Primero se deben hacer cambios a los archivos deseados. Luego, se usa `git add` para mover
+todos los archivos cambiados al staging area ya sea con `git add .` o `git add <nombre de archivos>`.
+Posterior a ello, se crea el commit con `git commit -m "<mensaje descriptivo>"`
+por ejemplo digamos que alguien arregló un error, en ese caso la creación del commit se vería
+similar a: `git commit -m "error de memoria arreglado al..."`  
+Un commit contiene la siguiente información:  
+**Tree:** Hash del tree raíz.  
+**Parent:** Hash o hashes de los commits anteriores.  
+**Author:** Persona que originalmente escribió los cambios del commit y la fecha de autoría.  
+**Committer:** Persona que creó el commit junto con la fecha de creación.  
+**Mensaje:** Notas que describen los cambios del commit. Son añadidas por el committer.  
+A parte de estas cosas, los commits tambien guardan metadatos útiles para otras cosas (por ejemplo,
+si se firma el commit con GPG este guarda los datos para ello) pero lo descrito anteriormente es lo
+esencial.
 5. ¿Cuál es la diferencia entre git pull y git fetch?
 6. ¿Qué es un branch (rama) en Git y cómo Git gestiona los punteros a commits?
 7. ¿Cómo se realiza un merge y qué conflictos pueden surgir? ¿Cómo se resuelven?
