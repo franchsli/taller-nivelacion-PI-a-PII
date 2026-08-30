@@ -114,12 +114,93 @@ el desarrollador lo olvidó y ya tiene cambios, etc.
 12. ¿Qué mecanismos ofrece Git para deshacer cambios (por ejemplo, git reset, git
 revert, git checkout)?  
 **R//**  
-- **reset:** Se usa para mover los cambios en la staging area devuelta al working directory
+
+- **reset:** Permite cambiar a qué commit apunta la rama actual. Por ejemplo `git reset HEAD~1`
+retrocede el puntero un commit, conserva los archivos modificados en el working tree y quita los
+cambios de staging.
 - **revert:** Deshace un commit ya realizado añadiendo un nuevo commit que invierte los cambios del
 commit dado. Por ejemplo: `git revert HEAD~3` revierte los cambios en el último cuarto commit en HEAD y
 crea un nuevo commit con los cambios revertidos.
+- **checkout:** Permite cambiar de rama y para restaurar una versión de un archivo con
+`git checkout <commit> <nombre-archivo>` o `git checkout <nombre-archivo>`.
+- **restore:** Permite restaurar archivos del working tree. Puede deshacer cambios locales de un archivo
+con `git restore <nombre-archivo>` o quitarlo del staging area con `git restore --staged <nombre-archivo>`.
+
 13. ¿Cómo funciona la configuración de remotos (origin, upstream) y qué comandos uso
-para gestión de forks?
+para gestión de forks?  
+**R//** Los remotos son nombres locales asociados con URL de otro repositorio.
+
+- **origin:** Normalmente es el repositorio donde se clonó. Si se usa un fork pues
+es una copia del repositorio original.
+- **upstream:** Usualmente representa el repositorio original del proyecto.
+
+Estos nombres no son palabras reservadas, se pueden configurar como se deseen, por ejemplo:  
+`git remote rename origin <nuevo-nombre>`.  
+
+Suponiendo que `origin` sea un fork del repo original y `upstream` sea el repositorio original, entonces
+para gestionar los forks se hace lo siguiente:
+
+Se clona el fork:
+
+````bash
+git clone <URL_DEL_FORK>
+cd proyecto
+````
+
+Se registra el repositorio original:
+
+````bash
+git remote add upstream <URL_DEL_REPOSITORIO_ORIGINAL>
+````
+
+Se comprueba las ramas remotas:
+
+````bash
+git fetch --all
+git branch -a
+````
+
+Actualiza la rama local con los cambios originales:
+
+````bash
+git switch main
+git fetch upstream
+git rebase upstream/main
+````
+
+También se puede utilizar merge:
+
+````bash
+git merge upstream/main
+````
+
+Publica la actualización en tu fork:
+
+````bash
+git push origin main
+````
+
+Crea una rama para tu trabajo:
+
+````bash
+git switch -c cambios
+````
+
+Después de realizar commits, se publica:
+
+````bash
+git push -u origin cambios
+````
+
+La opción -u establece la rama remota de seguimiento, por lo que posteriormente puedes usar simplemente:
+
+````bash
+git push
+git pull
+````
+
+Git utiliza referencias como origin/main para representar localmente el último estado conocido de una rama remota. git push origin main envía la rama local main a la rama main del remoto origin.
+
 14. ¿Cómo puedo inspeccionar el historial de commits (por ejemplo, git log, git
 diff, git show)?
 
