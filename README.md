@@ -202,20 +202,122 @@ git pull
 Git utiliza referencias como origin/main para representar localmente el último estado conocido de una rama remota. git push origin main envía la rama local main a la rama main del remoto origin.
 
 14. ¿Cómo puedo inspeccionar el historial de commits (por ejemplo, git log, git
-diff, git show)?
+diff, git show)?  
+**R//** Se puede inspeccionar el historial de commits con los siguientes comandos:
+
+- **git log:** Muestra logs de commits en un orden cronológicamente inverso (más recientes primero).
+- **git diff:** Permite ver los cambios entre commits, commit y working tree, entre dos ramas, etc.
+- **git show:** Permite ver los datos de un commit en específico.
 
 ### Programación
 
-15. ¿Cuáles son los tipos de datos primitivos en Java?
+15. ¿Cuáles son los tipos de datos primitivos en Java?  
+**R//** Los tipos de datos primitivos son tipos añadidos directamente en el lenguaje y no son objetos (como si lo son
+los no primitivos).
+
+- **byte:** Almacena enteros desde -128 a 127.
+- **short:** Almacena enteros desde -32,768 a 32,767.
+- **int:** Almacena enteros desde -2,147,483,648 a 2,147,483,647.
+- **long:** Almacena enteros desde -9,223,372,036,854,775,808 a 9,223,372,036,854,775,807.
+- **float:** Almacena números fraccionarios. Suficiente para guardar de 6 a 7 puntos decimales.
+- **double:** Almacena números fraccionarios. Suficiente para guardar de 15 a 16 puntos decimales.
+- **boolean:** Almacena falso (false) o verdadero (true).
+- **char:** Almacena un solo caracter ya sea alfanumérico, ASCII o unicode.
+
 16. ¿Cómo funcionan las estructuras de control de flujo como if, else, switch y bucles en
-Java?
-17. ¿Por qué es importante usar nombres significativos para variables y métodos?
-18. ¿Qué es la Programación Orientada a Objetos (POO)?
-19. ¿Cuáles son los cuatro pilares de la Programación Orientada a Objetos?
+Java?  
+**R//**
+
+- **Condicionales**
+    - **if:** El código se ejecuta si y solo si la condición evaluada es verdadera.
+    - **else if:** El código se ejecuta si la condición es verdadera y no se ejecutó un bloque
+    if antes.
+    - **else:** El código se ejecuta si ninguna condición evaluada se cumple.
+    - **switch:** Se compara el valor de una expresión a muchos casos posibles llamados "case".
+    Se ejecutará el código del case correspondiente. Si se especifica un caso "default" entonces
+    este se ejecutara si ningún case coincide con la expresión evaluada.
+
+- **Repetitivas**
+    - **for:** Se ejecuta mientras la condición dada sea verdadera. También maneja un iterador
+    que actualiza el valor de la variable usada en la condición. De este modo, el bucle se ejecuta
+    cuantas veces el programador quiera.
+    - **while:** Se ejecuta mientras la condición dada sea verdadera. Este no maneja su iterador o
+    algo por el estilo, para que la condición cambie su valor, el programa (otra parte del código) lo tiene que hacer.
+    - **do while:** Se ejecuta el código deseado y luego se evalua una condición. Si la condición no se cumple, el código
+    no volverá a ejecutarse. Esto permite que sea seguro que el código adentro se ejecute al menos una vez.
+
+17. ¿Por qué es importante usar nombres significativos para variables y métodos?  
+**R//** Porque de esta manera el código se vuelve más legible y entendible para quienes lo mantienen.
+Si se usaran nombres al azar o con poco sentido arreglar errores o añadir cosas sería imposible ya que no
+se entendería el por qué ni el para qué de las variables.
+18. ¿Qué es la Programación Orientada a Objetos (POO)?  
+**R//** Es un paradigma de programación en el que se usan objetos para representar cosas del mundo real.
+19. ¿Cuáles son los cuatro pilares de la Programación Orientada a Objetos?  
+**R//**  
+- **Herencia:** Permite que una clase reciba (herede) los atributos (características) y métodos (habilidades)
+de otra clase. Por ejemplo, si se quiere representar a un lobo y a un perro, entonces las clases Perro y Lobo heredan de
+Canino, ya que ambos son caninos.
+- **Abstraccion:** Se enfoca en mostrar las partes esenciales de un objeto ocultando detalles complejos.
+- **Polimorfismo:** Permite que un mismo método se comporte diferente según la clase que lo usa.
+- **Encapsulación:** Se enfoca en proteger los datos internos de un objeto y exponer solo lo necesario garantizando seguridad.
 20. ¿Qué es la herencia en POO y cómo se utiliza en Java?
-21. ¿Qué son los modificadores de acceso y cuáles son los más comunes en Java?
+**R//** La herencia permite que una clase herede los atributos y métodos de una clase padre. En Java para que una clase herede
+de otra, se debe usar la palabra `extends` e indicar el nombre de la clase de la cual va a heredar. Siguiendo el ejemplo
+de la pregunta anterior, en Java se vería así:
+
+```` java
+// Clase base (Padre)
+class Canino {
+    String especie;
+
+    public void emitirSonido() {
+        System.out.println("El canino hace un sonido.");
+    }
+}
+
+// Clase derivada (Hijo) que hereda de Canino
+class Perro extends Canino {
+    public void emitirSonido() {
+        System.out.println("El perro ladra: ¡Guau, guau!");
+    }
+    
+    public void moverCola() {
+        System.out.println("El perro mueve la cola porque está feliz.");
+    }
+}
+
+// Clase derivada (Hijo) que hereda de Canino
+class Lobo extends Canino {
+    public void emitirSonido() {
+        System.out.println("El lobo aúlla: ¡Auuu!");
+    }
+    
+    public void cazarEnManada() {
+        System.out.println("El lobo se organiza con su manada para cazar.");
+    }
+}
+````
+
+21. ¿Qué son los modificadores de acceso y cuáles son los más comunes en Java?  
+**R//** Los modificadores de acceso son palabras reservadas que modifican la visibilidad y el nivel de acceso
+a clases, métodos, variables y demás dentro del código. Estos modificadores son la base para la implementación
+del encapsulamiento en Java. Los modificadores de acceso son:
+- **default:** Sin palabra reservada, es el que tienen si no se especifica algun modificador.
+El acceso queda limitado al mismo paquete, cualquier cosa fuera del paquete no podrá acceder a ello.
+- **public:** El acceso está disponible en todo el código, sin importar en que paquete se esté.
+- **private:** El elemento solo es accesible dentro de la misma clase en la que se declara.
+- **protected:** Permite el acceso desde el mismo paquete y clases hijas de la clase en la que se definió el elemento
+(incluso si las clases hijas no son del mismo paquete).
+
 22. ¿Qué es una variable de entorno y por qué son importantes para Java o la
-programación en general?
+programación en general?  
+**R//** Una variable de entorno es un valor con nombre dinámico en el equipo que puede influir en el
+comportamiento de procesos en ejecución.  
+Las variables de entorno son muy importantes para la programación en general ya que permiten almacenar datos
+sensibles de manera local en el equipo sin que esté directamente en el código fuente. Un caso en el que esto es muy útil
+es al momento de tener un proyecto open source en GitHub que use una API key, en este caso no se puede poner la API key directamente
+en el código o todo el mundo podría usarla y dado que es open source no tendría caso poner privado el repositorio. Al tener
+una variable de entorno, el código puede leer la API key sin que esté directamente escrita ahí.
 
 ## Parte práctica
 
