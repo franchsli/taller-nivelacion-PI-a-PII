@@ -18,13 +18,13 @@ documentación técnica, foros y demás.
 **R//** Un repositorio en Git o también llamado "repo" es un espacio de almacenamiento
 donde se guarda el historial de cambios de un proyecto y sus archivos.
 Se diferencia de un proyecto "normal" en que Git permite conocer cuándo y dónde
-se hicieron cambios, revertirlos, etc. Nada de eso sería posible sin el historial de Git.
+se hicieron cambios, revertirlos, etc.
 2. ¿Cuáles son las tres áreas principales de Git (working directory, staging area/index y
 repository) y qué papel cumple cada una?  
 **R//** **Working directory:** Es donde están todos los archivos del proyecto. El usuario
 escribe los cambios ahí.  
-**Staging area:** Es donde Git reune los cambios en los archivos deseados. También le permite
-al usuario añadir mensajes a sus cambios para diferenciarlos de otros de manera comprensible.  
+**Staging area:** Es donde Git reune los cambios en los archivos deseados que formaran parte
+del siguiente commit.
 **Repository:** Es donde Git guarda los cambios en sí, es donde el historial y todos
 los cambios anteriores residen en el equipo. El repository es lo que le da la habilidad al
 usuario de cambiar entre versiones y guardar nuevas versiones de sus archivos.  
@@ -37,10 +37,13 @@ configurados con ese algoritmo.
 excluyendo el nombre y ruta de este.  
 **Tree:** Representa los directorios. Contiene los hashes de los blob o subtrees
 junto con sus nombres de archivo, tipos y permisos de dichos archivos.  
-**Commit:** Representa el tree raíz junto con quién hizo el commit (autor), cuando (fecha) y
-el por qué (mensaje).  
-**Tag:** Representa una etiqueta de un objeto (commit). Guarda el objeto etiquetado, nombre,
-autor y mensaje.  
+**Commit:** Representa el tree raíz junto con quién hizo el commit (committer), quién escribió
+los cambios en el commit (autor), cuando (fecha) y
+el por qué (mensaje), etc.  
+**Tag:** Existen dos tipos:
+    - **Ligeros:** Simplemente una referencia a un commit en específico.
+    - **Anotados:** Referencia al commit y además de eso guarda el objeto etiquetado,
+    tagger, correo, fecha y un mensaje de tagging.
 4. ¿Cómo se crea un commit y qué información almacena un objeto commit?  
 **R//** Primero se deben hacer cambios a los archivos deseados. Luego, se usa `git add` para mover
 todos los archivos cambiados al staging area ya sea con `git add .` o `git add <nombre de archivos>`.
@@ -97,10 +100,10 @@ Git no va a guardar nada en el repository ya que él busca en la staging area y 
 Adicional a eso, Git también informará que hay cambios en archivos y dirá que se deben registrar
 usando `git add`.
 9. ¿Qué es el archivo .gitignore y cómo influye en el seguimiento de archivos?  
-**R//** El archivo .gitignore es un archivo que le dice a Git que cosas debe ignorar completamente.
+**R//** El archivo .gitignore es un archivo que le dice a Git que cosas no rastreadas debe ignorar completamente.
 Por ejemplo, si alguien tiene ese archivo y adentro escribe *.txt, Git va a ignorar todos los archivos
-de texto, aunque se hagan cambios en esos archivos y el usuario ejecute `git add .` Git simplemente
-no tendrá en cuenta nada de eso, como si los archivos no existieran.
+de texto que Git no haya rastreado antes, aunque se hagan cambios en esos archivos y el usuario ejecute `git add .`
+Git simplemente no tendrá en cuenta nada de eso, como si los archivos no existieran.
 10. ¿Cuál es la diferencia entre un “commit amend” (--amend) y un nuevo commit?  
 **R//** La diferencia radica en que `git commit --amend` reemplaza el commit al cual apunta la rama
 por uno nuevo. Con ese comando se pueden corregir cosas faltantes en el commit o re escribir el mensaje.
@@ -109,7 +112,7 @@ contenidos del objeto commit anterior sino que lo reemplaza completamente, un co
 completamente diferente.
 11. ¿Cómo se utiliza git stash y en qué escenarios es útil?  
 **R//** Se usa generalmente así `git stash push -m "<razón>"`. Es útil en situaciones en las que
-se requiera descartar cambios incompletos y cambiar de rama o se necesitaba hacer un `git pull` antes pero
+se requiera guardar temporalmente cambios incompletos y cambiar de rama o se necesitaba hacer un `git pull` antes pero
 el desarrollador lo olvidó y ya tiene cambios, etc.
 12. ¿Qué mecanismos ofrece Git para deshacer cambios (por ejemplo, git reset, git
 revert, git checkout)?  
@@ -119,7 +122,7 @@ revert, git checkout)?
 retrocede el puntero un commit, conserva los archivos modificados en el working tree y quita los
 cambios de staging.
 - **revert:** Deshace un commit ya realizado añadiendo un nuevo commit que invierte los cambios del
-commit dado. Por ejemplo: `git revert HEAD~3` revierte los cambios en el último cuarto commit en HEAD y
+commit dado. Por ejemplo: `git revert HEAD~3` revierte los cambios en el tercer commit anterior a HEAD y
 crea un nuevo commit con los cambios revertidos.
 - **checkout:** Permite cambiar de rama y para restaurar una versión de un archivo con
 `git checkout <commit> <nombre-archivo>` o `git checkout <nombre-archivo>`.
@@ -219,10 +222,10 @@ los no primitivos).
 - **short:** Almacena enteros desde -32,768 a 32,767.
 - **int:** Almacena enteros desde -2,147,483,648 a 2,147,483,647.
 - **long:** Almacena enteros desde -9,223,372,036,854,775,808 a 9,223,372,036,854,775,807.
-- **float:** Almacena números fraccionarios. Suficiente para guardar de 6 a 7 puntos decimales.
-- **double:** Almacena números fraccionarios. Suficiente para guardar de 15 a 16 puntos decimales.
+- **float:** Almacena números fraccionarios. Suficiente para guardar de 6 a 7 puntos decimales significativos.
+- **double:** Almacena números fraccionarios. Suficiente para guardar de 15 a 16 puntos decimales significativos.
 - **boolean:** Almacena falso (false) o verdadero (true).
-- **char:** Almacena un solo caracter ya sea alfanumérico, ASCII o unicode.
+- **char:** Almacena un solo caracter Unicode de 16 bits.
 
 16. ¿Cómo funcionan las estructuras de control de flujo como if, else, switch y bucles en
 Java?  
@@ -234,13 +237,13 @@ Java?
     if antes.
     - **else:** El código se ejecuta si ninguna condición evaluada se cumple.
     - **switch:** Se compara el valor de una expresión a muchos casos posibles llamados "case".
-    Se ejecutará el código del case correspondiente. Si se especifica un caso "default" entonces
-    este se ejecutara si ningún case coincide con la expresión evaluada.
+    Se ejecutará el código del case correspondiente si se rompe la ejecución con `break` al final
+    de cada case. En caso de que no pase esto, se ejecutará cada case consecuente.
+    Si se especifica un caso "default" entonces este se ejecutara si ningún case coincide con la expresión evaluada.
 
 - **Repetitivas**
-    - **for:** Se ejecuta mientras la condición dada sea verdadera. También maneja un iterador
-    que actualiza el valor de la variable usada en la condición. De este modo, el bucle se ejecuta
-    cuantas veces el programador quiera.
+    - **for:** Permite repetir un bloque de código utilizando una inicialización, una condición
+    y una expresión de actualización; normalmente se usa cuando se conoce o controla el número de iteraciones.
     - **while:** Se ejecuta mientras la condición dada sea verdadera. Este no maneja su iterador o
     algo por el estilo, para que la condición cambie su valor, el programa (otra parte del código) lo tiene que hacer.
     - **do while:** Se ejecuta el código deseado y luego se evalua una condición. Si la condición no se cumple, el código
@@ -248,7 +251,7 @@ Java?
 
 17. ¿Por qué es importante usar nombres significativos para variables y métodos?  
 **R//** Porque de esta manera el código se vuelve más legible y entendible para quienes lo mantienen.
-Si se usaran nombres al azar o con poco sentido arreglar errores o añadir cosas sería imposible ya que no
+Si se usaran nombres al azar o con poco sentido arreglar errores o añadir cosas sería muy difícil ya que no
 se entendería el por qué ni el para qué de las variables.
 18. ¿Qué es la Programación Orientada a Objetos (POO)?  
 **R//** Es un paradigma de programación en el que se usan objetos para representar cosas del mundo real.
@@ -259,7 +262,9 @@ de otra clase. Por ejemplo, si se quiere representar a un lobo y a un perro, ent
 Canino, ya que ambos son caninos.
 - **Abstraccion:** Se enfoca en mostrar las partes esenciales de un objeto ocultando detalles complejos.
 - **Polimorfismo:** Permite que un mismo método se comporte diferente según la clase que lo usa.
-- **Encapsulación:** Se enfoca en proteger los datos internos de un objeto y exponer solo lo necesario garantizando seguridad.
+- **Encapsulación:** Se enfoca en proteger los datos internos de un objeto y exponer solo lo necesario garantizando
+una capa extra de control y protección.
+
 20. ¿Qué es la herencia en POO y cómo se utiliza en Java?
 **R//** La herencia permite que una clase herede los atributos y métodos de una clase padre. En Java para que una clase herede
 de otra, se debe usar la palabra `extends` e indicar el nombre de la clase de la cual va a heredar. Siguiendo el ejemplo
@@ -302,7 +307,7 @@ class Lobo extends Canino {
 **R//** Los modificadores de acceso son palabras reservadas que modifican la visibilidad y el nivel de acceso
 a clases, métodos, variables y demás dentro del código. Estos modificadores son la base para la implementación
 del encapsulamiento en Java. Los modificadores de acceso son:
-- **default:** Sin palabra reservada, es el que tienen si no se especifica algun modificador.
+- **package-private:** Sin palabra reservada, es el que tienen si no se especifica algun modificador.
 El acceso queda limitado al mismo paquete, cualquier cosa fuera del paquete no podrá acceder a ello.
 - **public:** El acceso está disponible en todo el código, sin importar en que paquete se esté.
 - **private:** El elemento solo es accesible dentro de la misma clase en la que se declara.
