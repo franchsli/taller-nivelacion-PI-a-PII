@@ -7,7 +7,7 @@ public class Invertidor {
         System.out.println("Introduce la cadena.");
         String cadena = scanner.nextLine();
         String cadenaInvertida = invertirTexto(cadena);
-        System.out.println("La cadena " + cadena + "de forma invertida es:\n" + cadenaInvertida);
+        System.out.println("La cadena " + cadena + " de forma invertida es:\n" + cadenaInvertida);
 
         scanner.close();
     }
