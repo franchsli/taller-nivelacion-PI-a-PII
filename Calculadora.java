@@ -7,7 +7,7 @@ public class Calculadora {
         while (true) {
             System.out.println("Introduzca un número.");
             double num1 = scanner.nextDouble();
-            System.out.println("Introduzca el operador.");
+            System.out.println("Introduzca el operador (+, *, - o /).");
             scanner.nextLine(); // Limpiar el buffer
             String operador = scanner.nextLine();
             System.out.println("Introduzca otro número.");
