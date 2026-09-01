@@ -337,6 +337,7 @@ A continuación se añade una captura de la ejecución del programa:
 palabra. La palabra no contendrá símbolos, caracteres especiales, acentos, ni
 números y siempre estará en minúsculas.  
 **R//** La solución a este punto está en el archivo [Contador.java](Contador.java).  
+<img width="208" height="91" alt="image" src="https://github.com/user-attachments/assets/ff49b237-651f-4c2d-859d-46abf97dc901" />
 
 3. Escribir un programa que invierta una cadena de texto ingresada por el usuario.  
 **R//** La solución a este punto está en el archivo [Invertidor.java](Invertidor.java).  
