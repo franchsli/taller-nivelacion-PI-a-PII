@@ -328,8 +328,19 @@ una variable de entorno, el código puede leer la API key sin que esté directam
 
 1. Crear un programa que utilice estructuras de control para resolver un problema
 sencillo, como una calculadora básica que realice operaciones de suma, resta,
-multiplicación y división.
+multiplicación y división.  
+**R//** La solución a este punto está en el archivo [Calculadora.java](Calculadora.java).  
+A continuación se añade una captura de la ejecución del programa:  
+<img width="315" height="209" alt="image" src="https://github.com/user-attachments/assets/7812110d-8d26-4441-b51b-4958e463accc" />
+
 2. Escribir un programa que cuente el número de vocales y consonantes en una
 palabra. La palabra no contendrá símbolos, caracteres especiales, acentos, ni
-números y siempre estará en minúsculas.
-3. Escribir un programa que invierta una cadena de texto ingresada por el usuario.
+números y siempre estará en minúsculas.  
+**R//** La solución a este punto está en el archivo [Contador.java](Contador.java).  
+A continuación se añade una captura de la ejecución del programa:  
+<img width="208" height="91" alt="image" src="https://github.com/user-attachments/assets/ff49b237-651f-4c2d-859d-46abf97dc901" />
+
+3. Escribir un programa que invierta una cadena de texto ingresada por el usuario.  
+**R//** La solución a este punto está en el archivo [Invertidor.java](Invertidor.java).  
+A continuación se añade una captura de la ejecución del programa:  
+<img width="281" height="70" alt="image" src="https://github.com/user-attachments/assets/f9c9beba-7c29-4434-92dd-9676927fb19c" />
